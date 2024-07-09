@@ -21,29 +21,33 @@
     </section>
     <section class="columns">
       <div class="column is-one-quarter">
-        <button class="button is-primary is-outlined is-fullwidth mt-3">
+        <!-- CP added id for library redirect onclick event listener -->
+        <button id="library-redirect" class="button is-primary is-outlined is-fullwidth mt-3">
           My books
         </button>
       </div>
-      <div class="column is-half">
+      <div class="column is-half" id="append-searches">
         <p class="has-text-centered">search results</p>
       </div>
       <div class="column">
         <div class="field">
           <label class="label has-text-centered">Look Up A Book</label>
           <div class="control">
-            <input class="input" type="text" placeholder="book/author" />
+            <!-- CP added id for search value -->
+            <input id="search-value" class="input" type="text" placeholder="book/author" />
           </div>
           <div class="control">
             <div class="select is-fullwidth mt-3">
-              <select class="has-text-centered">
+                <!-- CP added id for search criteria -->
+              <select class="has-text-centered" id="search-criteria">
                 <option>Title</option>
                 <option>Author</option>
               </select>
             </div>
           </div>
           <div class="control">
-            <button class="button is-info is-fullwidth mt-3">Search</button>
+            <!-- CP added id for search button onclick event listener -->
+            <button id="btn-search" class="button is-info is-fullwidth mt-3">Search</button>
           </div>
         </div>
       </div>
