@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cozy Bookshelf</title>
     <!-- Bulma CSS link -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
     <!-- our own CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
@@ -22,10 +19,9 @@
     <section class="columns">
       <div class="column is-one-quarter">
         <!-- CP added id for library redirect onclick event listener -->
-        <button id="library-redirect" class="button is-primary is-outlined is-fullwidth mt-3">
-          My books
-        </button>
+        <button id="library-redirect" class="button is-primary is-outlined is-fullwidth mt-3">My books</button>
       </div>
+      <!-- CP added id for the div where we will append our searches -->
       <div class="column is-half" id="append-searches">
         <p class="has-text-centered">search results</p>
       </div>
@@ -38,7 +34,7 @@
           </div>
           <div class="control">
             <div class="select is-fullwidth mt-3">
-                <!-- CP added id for search criteria -->
+              <!-- CP added id for search criteria -->
               <select class="has-text-centered" id="search-criteria">
                 <option>Title</option>
                 <option>Author</option>
