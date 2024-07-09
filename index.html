@@ -6,54 +6,65 @@
     <title>Cozy Bookshelf</title>
     <!-- Bulma CSS link -->
     <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
->
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
+    />
     <!-- our own CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
-</html>
-<section class="section">
-    <div class="container">
-        <h1 class="title">Welcome to My Website</h1>
-        <p class="subtitle">This is a simple wireframe using Bulma</p>
-    </div>
-</section>
-<body>
-    <section class="section">
-        <div class="container">
-            <div class="starter">
-                <div class="column">
-                    <div class="box">
-                        <p>element</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="library">
-                            <p>card</p>
-                        </div>
-                    </div>
-                </div>
+  <body>
+    <section class="hero is-small is-info">
+      <div class="hero-body">
+        <h1 class="title has-text-centered">Cozy Bookshelf</h1>
+        <p class="subtitle has-text-centered"><!--insert here--></p>
+      </div>
+    </section>
+    <section class="columns">
+      <div class="column is-one-quarter">
+        <button class="button is-primary is-outlined is-fullwidth mt-3">
+          My books
+        </button>
+      </div>
+      <div class="column is-half">
+        <p class="has-text-centered">search results</p>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label class="label has-text-centered">Look Up A Book</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="book/author" />
+          </div>
+          <div class="control">
+            <div class="select is-fullwidth mt-3">
+              <select class="has-text-centered">
+                <option>Title</option>
+                <option>Author</option>
+              </select>
             </div>
+          </div>
+          <div class="control">
+            <button class="button is-info is-fullwidth mt-3">Search</button>
+          </div>
         </div>
+      </div>
     </section>
 
     <footer class="footer">
-        <div class="content has-text-centered">
-            <p>&copy; Cozy Bookshelf 2024. All rights reserved.</p>
-        </div>
+      <div class="content has-text-centered">
+        <p>&copy; Cozy Bookshelf 2024. All rights reserved.</p>
+      </div>
     </footer>
 
-  <!-- HTML goes here -->
-    
-  <!-- JQuery script -->
-  <script
-  src="https://code.jquery.com/jquery-3.7.1.min.js"
-  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-  crossorigin="anonymous"></script>
-  <!-- Local JS files -->
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/index.js"></script>
-</body>
+    <!-- HTML goes here -->
+
+    <!-- JQuery script -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Local JS files -->
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/index.js"></script>
+  </body>
 </html>
