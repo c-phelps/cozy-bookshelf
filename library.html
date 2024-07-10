@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cozy Bookshelf</title>
-    
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
+>
     <!-- our own CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
@@ -12,19 +15,60 @@
 <body>
 
   <!-- HTML goes here -->
-    <div class="content is-large">
-      <h1>Hello World</h1>
-      <p>library</p>
-      <h2>Second level</h2>
-      <p>My<strong>Bookshelf</strong></p>
-      <ul>
-        <li>book 1</li>
-        <li>book 2</li>
-        <li>book 3</li>
-        <li>book 4</li>
-        <button class="button">Button</button>
-      </ul>
+  <div class="hero is-info">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">Cozy Bookshelf</h1>
+      </div>
     </div>
+  </div>
+    <section>
+      <p class="control">
+        <button class="button">
+          <i class="fas fa-align-left"></i>
+          <span>Main page</span>
+        </button>
+      </p>
+    </section>
+    <section>
+      <div class="container">
+        <div class="field is-grouped is-centered">
+          <p class="control">
+            <button class="button is-primary" id="sortButton">Sort/Filter</button>
+          </p>
+          <p class="control">
+            <input class="input" type="text" placeholder="Search..." id="searchInput">
+          </p>
+        </div>
+        <div class="columns is-multiline" id="itemContainer"></div>
+          <!-- Items to be sorted/filtered go here -->
+        </div>
+      </div>
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="box">
+              <p>Saved books</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <div class="columns is-pulled-right">
+            <p>Recommendations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a href="#" class="pagination-previous">Previous</a>
+        <a href="#" class="pagination-next">Next page</a>
+      </nav>
 
   <!-- Local JS files -->
   <script src="./assets/js/script.js"></script>
