@@ -10,7 +10,9 @@ function fetchBooks(searchQuery, searchCriteria) {
 
 // Event listener for the search button click
 document.getElementById("btn-search").addEventListener("click", () => {
-  const searchValue = document.getElementById("search-value").value;
+  const searchValue = document
+    .getElementById("search-value")
+    .value.replace("", "+");
   const searchCriteria = document.getElementById("search-criteria").value;
   fetchBooks(searchValue, searchCriteria);
 });
