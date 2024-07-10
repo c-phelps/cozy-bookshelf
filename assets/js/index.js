@@ -8,22 +8,6 @@ function fetchBooks(searchQuery, searchCriteria) {
     .catch((error) => console.error("Fetch error:", error));
 }
 
-// Function to display search results on the page
-function displaySearchResults(data) {
-  const searchResultsDiv = document.getElementById("append-searches");
-  searchResultsDiv.innerHTML = "";
-
-  data.docs.forEach((book) => {
-    const bookTitle = book.title;
-    const bookAuthor = book.author_name
-      ? book.author_name.join(", ")
-      : "Unknown Author";
-    const bookElement = document.createElement("p");
-    bookElement.textContent = `${bookTitle} by ${bookAuthor}`;
-    searchResultsDiv.appendChild(bookElement);
-  });
-}
-
 // Event listener for the search button click
 document.getElementById("btn-search").addEventListener("click", () => {
   const searchValue = document.getElementById("search-value").value;
