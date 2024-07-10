@@ -12,7 +12,7 @@ function fetchBooks(searchQuery, searchCriteria) {
 document.getElementById("btn-search").addEventListener("click", () => {
   const searchValue = document
     .getElementById("search-value")
-    .value.replace("", "+");
+    .value.replace(" ", "+");
   const searchCriteria = document.getElementById("search-criteria").value;
   fetchBooks(searchValue, searchCriteria);
 });
