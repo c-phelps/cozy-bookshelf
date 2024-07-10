@@ -10,12 +10,12 @@ function displaySearchResults({ docs }) {
   // empty out any older search results to display the latest search
   $("#append-searches").empty();
   for (let books of docs) {
-    const strTitle = books.title;
+    const strTitle = books.title || "";
     let strAuthor;
     if (Array.isArray(books.author_name)) {
-      strAuthor = books.author_name[0];
+      strAuthor = books.author_name[0] || "";
     } else {
-      strAuthor = books.author_name;
+      strAuthor = books.author_name || "";
     }
     const numPages = books.number_of_pages_median;
     const firstPub = books.first_publish_year;
@@ -34,17 +34,19 @@ function displaySearchResults({ docs }) {
     const content = $("<div>").addClass("card-content");
     const contentInner = $("<div>").addClass("content");
     // if the following values exist for the data set then append them to the inner content as paragraphs
-    if (strAuthor) $("<p>").text(`Author: ${strAuthor}`).appendTo(contentInner);
-    if (firstPub) $("<p>").text(`First Published: ${firstPub}`).appendTo(contentInner);
-    if (numPages) $("<p>").text(`Number of Pages: ${numPages}`).appendTo(contentInner);
-    if (ratings) $("<p>").text(`Rating: ${ratings}`).appendTo(contentInner);
+    if (strAuthor) $("<p>").text(`Author: ${strAuthor}`).addClass("author").appendTo(contentInner);
+    if (firstPub) $("<p>").text(`First Published: ${firstPub}`).addClass("published").appendTo(contentInner);
+    if (numPages) $("<p>").text(`Number of Pages: ${numPages}`).addClass("pages").appendTo(contentInner);
+    if (ratings) $("<p>").text(`Rating: ${ratings}`).addClass("ratings").appendTo(contentInner);
     // append all the inner content to the card main content
     content.append(contentInner);
 
     // FOOTER: construct our footer based on bulma documentation
     const footer = $("<footer>").addClass("card-footer");
     // add a button to the bottom of the content that allows for the book to be saved into local storage
-    $("<a>").attr({ href: "#", id: strTitle }).addClass("card-footer-item").text("Save").appendTo(footer);
+    // the regex '/\s+/g' will replace all spaces found in the string with an underscore
+    const buttonID = `${strTitle.replace(/\s+/g, "_")}:${strAuthor.replace(/\s+/g, "_")}`;
+    $("<button>").attr("id", buttonID).addClass("card-footer-item").text("Save").appendTo(footer);
 
     // append our created elements to the card element shell
     card.append(header);
