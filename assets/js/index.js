@@ -70,3 +70,13 @@ document.getElementById("btn-search").addEventListener("click", () => {
   const searchCriteria = document.getElementById("search-criteria").value;
   fetchBooks(searchValue, searchCriteria);
 });
+
+//Event listener to link indexhtml to libraryhtml
+document.getElementById("library-redirect").addEventListener("click", function() {
+  window.location.href ="library.html"
+});
+
+
+
+
+
