@@ -32,14 +32,24 @@ function displaySearchResults({ docs }) {
 
     // BODY: construct our card body based on bulma documentation
     const content = $("<div>").addClass("card-content");
-    const contentInner = $("<div>").addClass("content");
+    const contentOuter = $("<div>").addClass("content");
+    const contentContainer = $("<div>").addClass("columns");
+    const contentInnerImg = $("<div>").addClass("column");
+    const contentInnerText = $("<div>").addClass("column");
+    if (coverCode)
+      $(`<img src='https://covers.openlibrary.org/b/id/${coverCode}-M.jpg' alt='Cover for ${strTitle}.'>`)
+        .addClass("imgCode")
+        .appendTo(contentInnerImg);
     // if the following values exist for the data set then append them to the inner content as paragraphs
-    if (strAuthor) $("<p>").text(`Author: ${strAuthor}`).addClass("author").appendTo(contentInner);
-    if (firstPub) $("<p>").text(`First Published: ${firstPub}`).addClass("published").appendTo(contentInner);
-    if (numPages) $("<p>").text(`Number of Pages: ${numPages}`).addClass("pages").appendTo(contentInner);
-    if (ratings) $("<p>").text(`Rating: ${ratings}`).addClass("ratings").appendTo(contentInner);
+    if (strAuthor) $("<p>").text(`Author: ${strAuthor}`).addClass("author").appendTo(contentInnerText);
+    if (firstPub) $("<p>").text(`First Published: ${firstPub}`).addClass("published").appendTo(contentInnerText);
+    if (numPages) $("<p>").text(`Number of Pages: ${numPages}`).addClass("pages").appendTo(contentInnerText);
+    if (ratings) $("<p>").text(`Rating: ${ratings}`).addClass("ratings").appendTo(contentInnerText);
+
     // append all the inner content to the card main content
-    content.append(contentInner);
+    contentContainer.append(contentInnerImg, contentInnerText);
+    contentOuter.append(contentContainer);
+    content.append(contentOuter);
 
     // FOOTER: construct our footer based on bulma documentation
     const footer = $("<footer>").addClass("card-footer");
@@ -49,9 +59,7 @@ function displaySearchResults({ docs }) {
     $("<button>").attr("id", buttonID).addClass("card-footer-item").text("Save").appendTo(footer);
 
     // append our created elements to the card element shell
-    card.append(header);
-    card.append(content);
-    card.append(footer);
+    card.append(header, content, footer);
     $("#append-searches").append(card);
   }
 }
