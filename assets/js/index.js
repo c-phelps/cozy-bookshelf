@@ -92,9 +92,15 @@ function displaySearchResults({ docs }) {
           rating: ratings,
           cover: coverCode,
         };
-        // Store the selected book in localStorage
-        localStorage.setItem("selectedBook", JSON.stringify(selectedBook));
-        // feedback
+        // Retrieve existing books from localStorage or initialize as an empty array
+        let selectedBooks =
+          JSON.parse(localStorage.getItem("selectedBooks")) || [];
+        // Add the new selected book to the array
+        selectedBooks.push(selectedBook);
+
+        // Store the updated selected books array in localStorage
+        localStorage.setItem("selectedBooks", JSON.stringify(selectedBooks));
+
         alert("Book saved!");
       })
       .appendTo(footer);
@@ -115,11 +121,8 @@ document.getElementById("btn-search").addEventListener("click", () => {
 });
 
 //Event listener to link indexhtml to libraryhtml
-document.getElementById("library-redirect").addEventListener("click", function() {
-  window.location.href ="library.html"
-});
-
-
-
-
-
+document
+  .getElementById("library-redirect")
+  .addEventListener("click", function () {
+    window.location.href = "library.html";
+  });
