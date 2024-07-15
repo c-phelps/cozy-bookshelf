@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
+    <div id="modal" class="modal is-active">
+      <div class="modal-background"></div>
+      <div class="modal-content has-background-danger">
+        <div class="box" id="modal-text">
+          <p>Please enter a search term before searching.</p>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
     <section class="hero is-small is-info">
       <div class="hero-body">
         <h1 class="title has-text-centered">Cozy Bookshelf</h1>
@@ -35,6 +44,7 @@
           <div class="control">
             <div class="select is-fullwidth mt-3">
               <!-- CP added id for search criteria -->
+              
               <select class="has-text-centered" id="search-criteria">
                 <option>Title</option>
                 <option>Author</option>
