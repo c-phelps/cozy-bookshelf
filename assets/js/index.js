@@ -1,11 +1,22 @@
 // Function to fetch data from the Open Library API
 function fetchBooks(searchQuery, searchCriteria) {
+  if (searchQuery !== ""){
+
+  
   fetch(
     `https://openlibrary.org/search.json?${searchCriteria.toLowerCase()}=${searchQuery}`
   )
     .then((response) => response.json())
     .then((data) => displaySearchResults(data))
     .catch((error) => console.error("Fetch error:", error));
+
+} 
+else {
+  $("#modal-text").empty();
+  $("<p>").text("Please enter a search term before searching.").appendTo("#modal-text");
+  $("#modal").addClass("is-active");
+ 
+}
 }
 
 function displaySearchResults({ docs }) {
@@ -101,7 +112,9 @@ function displaySearchResults({ docs }) {
         // Store the updated selected books array in localStorage
         localStorage.setItem("selectedBooks", JSON.stringify(selectedBooks));
 
-        alert("Book saved!");
+        $("#modal-text").empty();
+        $("<p>").text("Books saved").appendTo("#modal-text");
+        $("#modal").addClass("is-active");
       })
       .appendTo(footer);
 
@@ -117,7 +130,9 @@ document.getElementById("btn-search").addEventListener("click", () => {
     .getElementById("search-value")
     .value.replace(" ", "+");
   const searchCriteria = document.getElementById("search-criteria").value;
+  
   fetchBooks(searchValue, searchCriteria);
+
 });
 
 //Event listener to link indexhtml to libraryhtml
