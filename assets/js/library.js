@@ -46,15 +46,19 @@ function displaySelectedBooks() {
         card.innerHTML = `
               <div class="card-content">
                 <div class="image-container">
-                  <img src="https://covers.openlibrary.org/b/id/${savedBook.cover}-M.jpg" alt="Cover for ${savedBook.title}">
+                  <img src="https://covers.openlibrary.org/b/id/${savedBook.cover}-M.jpg" alt="Cover for ${
+          savedBook.title
+        }">
                 </div>
                 <div class="text-container">
                   <p>Title: ${savedBook.title}</p>
                   <p>Author: ${savedBook.author}</p>
-                  <p>Pages: ${savedBook.pages}</p>
-                  <p>Published: ${savedBook.published}</p>
-                  <p>Rating: ${savedBook.rating}</p>
-                  <button class="button is-danger is-outlined delete-button" data-title="${savedBook.title}">Delete</button>
+                  <p>Pages: ${savedBook.pages || ""}</p>
+                  <p>Published: ${savedBook.published || ""}</p>
+                  <p>Rating: ${savedBook.rating || ""}</p>
+                  <button class="button is-danger is-outlined delete-button" data-title="${
+                    savedBook.title
+                  }">Delete</button>
                 </div>
               </div>
               `;

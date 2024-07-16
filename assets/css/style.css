@@ -2,3 +2,6 @@
 #selected-books {
   min-height: 500px;
 }
+* {
+  font-family: Georgia, serif;
+}
