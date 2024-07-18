@@ -1,33 +1,62 @@
-document.querySelector("#btn-back").addEventListener("click", function () {
-  window.location.href = "index.html";
-});
-
 const apiKey = "GEoGrfuYmgUebEklTl8MwWQBlM6O3TWh";
 // global variable
 let curTitle;
 
-function displayRecommendations({ results }) {
-  const randNum = Math.floor(Math.random() * results.lists.length);
-  $("#recommended").append("<p>").addClass("is-size-4").text(results.lists[randNum].list_name);
-  for (books of results.lists[randNum].books) {
+// function to populated the select control and display it on screen for the data returned by the API call
+function populateSelect({ results }) {
+  localStorage.setItem("recommendedBooks", JSON.stringify(results.lists));
+  const eleControl = $("<div>").addClass("control");
+  const eleContainer = $("<div>").addClass("select is-fullwidth mt-3").attr("id", "book-container");
+  const eleSelect = $("<select>")
+    .addClass("has-text-centered")
+    .attr("id", "filter-option")
+    .on("change", (event) => {
+      // set the on change event to displaySelected and pass the target's value
+      displaySelected(event.target.value);
+    });
+  $("<p>").text("Please select a category for recommendations").appendTo(eleControl);
+
+  // for each value in results.list add the display_name as an option
+  for (let x in results.lists) {
+    $("<option>").text(results.lists[x].display_name).appendTo(eleSelect);
+  }
+  // append our values
+  eleSelect.appendTo(eleContainer);
+  eleContainer.appendTo(eleControl);
+  $("#recommended").append(eleControl);
+  $("<div>").addClass("column", "has-text-centered").attr("id", "fill-cards").appendTo("#recommended");
+}
+
+// display the books for the bestsellers list that is selected on option change
+function displaySelected(displayName) {
+  let arrRecommended = JSON.parse(localStorage.getItem("recommendedBooks")) || [];
+  const inArray = arrRecommended.findIndex(function (book) {
+    return book.display_name === displayName;
+  });
+  // clear out any previous books that were displayed
+  $("#fill-cards").empty();
+  // for each book in the array of objects display a card with relevant data
+  for (books of arrRecommended[inArray].books) {
     const card = $("<div>").addClass("card");
     const header = $("<header>").addClass("card-header");
     $("<p>").addClass("card-header-title").text(books.title).appendTo(header);
     const content = $("<div>").addClass("card-content");
     const contentInner = $("<div>").addClass("content");
-    $(`<img src='${books.book_image}' alt='Cover art for '${books.title}'>`).appendTo(contentInner);
+    $(`<img src='${books.book_image}' alt='Cover art for ${books.title}'>`).appendTo(contentInner);
     $("<p>").text(`Author: ${books.author}`).addClass("author").appendTo(contentInner);
-    $("<p>").text(`Description: ${books.description}`).addClass("author").appendTo(contentInner);
+    $("<p>").text(`Description: ${books.description}`).addClass("description").appendTo(contentInner);
     content.append(contentInner);
     card.append(header, content);
-    $("#recommended").append(card);
+    $("#fill-cards").append(card);
   }
 }
 
+// simple fetch request to return data to the webpage for recommendations
 function retrieveRecomendations() {
+  localStorage.setItem("recommendedBooks", JSON.stringify(""));
   fetch(`https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=${apiKey}`)
     .then((response) => response.json())
-    .then((data) => displayRecommendations(data))
+    .then((data) => populateSelect(data))
     .catch((error) => console.error("Fetch error:", error));
 }
 
@@ -83,21 +112,26 @@ function displaySelectedBooks() {
 // Call the function to display selected books
 displaySelectedBooks();
 
+// on document ready handle all the event listeners and fetch requests
 $(document).ready(() => {
   retrieveRecomendations();
-});
 
-$("#btn-delete-book").on("click", () => {
-  let savedBooks = JSON.parse(localStorage.getItem("selectedBooks"));
-  savedBooks = savedBooks.filter((book) => book.title !== curTitle);
-  localStorage.setItem("selectedBooks", JSON.stringify(savedBooks));
+  $("#btn-delete-book").on("click", () => {
+    let savedBooks = JSON.parse(localStorage.getItem("selectedBooks"));
+    savedBooks = savedBooks.filter((book) => book.title !== curTitle);
+    localStorage.setItem("selectedBooks", JSON.stringify(savedBooks));
 
-  $("#selected-books").empty();
-  displaySelectedBooks();
-  curTitle = "";
-  $("#modal").removeClass("is-active");
-});
+    $("#selected-books").empty();
+    displaySelectedBooks();
+    curTitle = "";
+    $("#modal").removeClass("is-active");
+  });
 
-$("#btn-cancel").on("click", () => {
-  $("#modal").removeClass("is-active");
+  $("#btn-cancel").on("click", () => {
+    $("#modal").removeClass("is-active");
+  });
+
+  document.querySelector("#btn-back").addEventListener("click", function () {
+    window.location.href = "index.html";
+  });
 });
